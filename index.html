@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1440" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Oliver – Portfolio</title>
   <link rel="preconnect" href="https://api.fontshare.com" />
   <link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500&display=swap" rel="stylesheet" />
@@ -16,10 +16,10 @@
       --hero-letter-spacing: 4px;
     }
 
+    html { scroll-behavior: smooth; }
     body {
       background: var(--color-bg);
       color: var(--color-text);
-      min-width: 1440px;
       font-family: var(--font-sans);
       overflow-x: hidden;
     }
@@ -59,7 +59,7 @@
 
     .enter-button__square--zoom {
       transform: scale(50);
-      transition: transform 400ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
       pointer-events: none;
     }
 
@@ -219,9 +219,137 @@
     .footer__nav a:hover {
       opacity: 0.6;
     }
+
+    /* ── 05 Norgram-style projects (post-zoom) ── */
+    .projects-section {
+      display: none;
+      background: #ffffff;
+      color: #0d0d0d;
+    }
+    body.post-zoom .projects-section { display: block !important; }
+    body.post-zoom .hero { display: none !important; }
+    body.post-zoom .enter-button { display: none !important; }
+
+    .projects-split {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    .projects-col {
+      padding: 80px 60px 120px;
+      border-right: 1px solid #e8e8e8;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+    .projects-col:last-child { border-right: none; border-left: 1px solid #e8e8e8; }
+
+    .project-card {
+      border-top: 1px solid #e8e8e8;
+      padding-top: 40px;
+      padding-bottom: 60px;
+    }
+
+    .project-card__client {
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0.1em;
+      margin-bottom: 16px;
+    }
+
+    .project-card__tagline {
+      font-weight: 500;
+      font-size: 24px;
+      color: #0d0d0d;
+      line-height: 1.35;
+      margin-bottom: 24px;
+    }
+
+    .project-card__meta {
+      display: flex;
+      gap: 20px;
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0.05em;
+    }
+
+    .projects-header {
+      margin-bottom: 60px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .projects-header__title {
+      font-size: 12px;
+      color: #999;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+    }
+
+    .projects-header__subtitle {
+      font-weight: 500;
+      font-size: 32px;
+      color: #0d0d0d;
+      line-height: 1.2;
+    }
+
+    @media (max-width: 768px) {
+      .projects-split { grid-template-columns: 1fr; }
+      .projects-col { border-right: none; border-left: none; border-bottom: 1px solid #e8e8e8; }
+      .projects-col:last-child { border-left: none; }
+    }
   </style>
 </head>
 <body>
+
+  <!-- 05 Norgram-style projects (split layout, shown after zoom) -->
+  <section class="projects-section" id="projects-section">
+    <div class="projects-split">
+      <div class="projects-col">
+        <header class="projects-header">
+          <p class="projects-header__title">Featured Work</p>
+          <h1 class="projects-header__subtitle">A selection of projects</h1>
+        </header>
+        <article class="project-card">
+          <p class="project-card__client">Project One</p>
+          <h2 class="project-card__tagline">Something meaningful and descriptive</h2>
+          <div class="project-card__meta"><span>Brand Identity</span><span>01.19</span><span>2024</span></div>
+        </article>
+        <article class="project-card">
+          <p class="project-card__client">Project Two</p>
+          <h2 class="project-card__tagline">Another compelling project title</h2>
+          <div class="project-card__meta"><span>Digital Platform</span><span>01.17</span><span>2024</span></div>
+        </article>
+        <article class="project-card">
+          <p class="project-card__client">Project Three</p>
+          <h2 class="project-card__tagline">Creative work that speaks for itself</h2>
+          <div class="project-card__meta"><span>Brand Identity</span><span>01.20</span><span>2023</span></div>
+        </article>
+      </div>
+      <div class="projects-col">
+        <header class="projects-header">
+          <p class="projects-header__title">More Work</p>
+          <h1 class="projects-header__subtitle">Additional projects</h1>
+        </header>
+        <article class="project-card">
+          <p class="project-card__client">Project Four</p>
+          <h2 class="project-card__tagline">Refined design with purpose</h2>
+          <div class="project-card__meta"><span>Web Design</span><span>01.14</span><span>2023</span></div>
+        </article>
+        <article class="project-card">
+          <p class="project-card__client">Project Five</p>
+          <h2 class="project-card__tagline">Essential aesthetics and impact</h2>
+          <div class="project-card__meta"><span>Brand Identity</span><span>01.17</span><span>2025</span></div>
+        </article>
+        <article class="project-card">
+          <p class="project-card__client">Project Six</p>
+          <h2 class="project-card__tagline">Crafted with restraint and rigor</h2>
+          <div class="project-card__meta"><span>Digital Product</span><span>01.10</span><span>2022</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <!-- 00 Centered enter button -->
   <div class="enter-button">
@@ -278,16 +406,23 @@
     }
 
     if (enterSquare) {
-      function startZoom() {
+      let projectsShown = false;
+      function showProjectsPage() {
+        if (projectsShown) return;
+        projectsShown = true;
+        document.body.classList.add('post-zoom');
+        document.body.style.background = '#ffffff';
+        document.body.style.color = '#000000';
+      }
+
+      function startTransition() {
         if (enterSquare.classList.contains('enter-button__square--zoom')) return;
         enterSquare.classList.add('enter-button__square--zoom');
-        enterSquare.addEventListener('transitionend', () => {
-          document.body.style.background = '#ffffff';
-          document.body.style.color = '#000000';
-        }, { once: true });
+        document.querySelector('.enter-button').style.pointerEvents = 'none';
+        setTimeout(showProjectsPage, 1000);
       }
-      enterSquare.addEventListener('mousedown', startZoom);
-      enterSquare.addEventListener('touchstart', startZoom, { passive: true });
+      enterSquare.addEventListener('mousedown', startTransition);
+      enterSquare.addEventListener('touchstart', startTransition, { passive: true });
     }
 
     window.addEventListener('load', runSequence);
